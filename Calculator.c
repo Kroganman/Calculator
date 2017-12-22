@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
     for(j = 1; j < argc; j++)
     {
-        if(sscanf(argv[j],"%f",&enter) > 0)
+        if(sscanf(argv[j],"%f",&enter) > 0) /* Check for input */
             push(stack,atof(argv[j]));
         else
         {
@@ -24,26 +24,26 @@ int main(int argc, char **argv)
             else
                 if(*argv[j] == '*')
                 {
-					push(stack,pop(stack) * pop(stack));
+		   push(stack,pop(stack) * pop(stack));
                 }
             else
                 if(*argv[j] == '-')
                 {
                    enter = pop(stack);
                    push(stack, pop(stack) - enter);
-				}
+		}
             else
                 if(*argv[j] == '/')
                 {
                    enter = pop(stack);
                    push(stack, pop(stack) / enter);
-				}
+		}
         }
     }
 
     printf("%.3g\n",stack->elem[stack->top]);
 
     free(stack->elem);
-    free(stack);
+    free(stack);  /* Stack cleaning */
     return 0;
 }
